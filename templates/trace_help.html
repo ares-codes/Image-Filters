@@ -1,0 +1,35 @@
+<style>
+  .options-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 0;
+  }
+</style>
+
+<div class="color-options-container">
+  <div class="option">
+    <label for="tracebgColor">Background:</label>
+    <input type="color" id="tracebgColor" value="#ffffff" />
+  </div>
+
+  <div class="option">
+    <label for="tracelineColor">Line Color:</label>
+    <input type="color" id="tracelineColor" />
+  </div>
+</div>
+
+<div class="option">
+  <div class="toggle-container">
+    <img id="lineImage" src="static/option_images/trace/multi.png" />
+    <div class="toggle">
+      <input type="radio" id="multiLine" name="lineToggle" checked />
+      <label for="multiLine">Multi Lines</label>
+
+      <input type="radio" id="singleLine" name="lineToggle" />
+      <label for="singleLine">One Line</label>
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/trace.js') }}"></script>

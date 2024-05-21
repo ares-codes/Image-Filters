@@ -1,0 +1,130 @@
+<style>
+  /* Set fixed width and height for the table container */
+  .table-container {
+    width: 150px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    border: 1px solid #ccc; /* Optional: Add border for better visibility */
+  }
+
+  /* Set fixed width for the table */
+  table {
+    width: 100%;
+  }
+
+  th,
+  td {
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  .options-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 0;
+  }
+
+  .toggle-container {
+    max-width: 400px; /* Set your desired max-width */
+  }
+
+  .toggle {
+    flex-wrap: wrap; /* Added this line to allow wrapping */
+  }
+</style>
+
+<div class="color-options-container">
+  <div class="option">
+    <label for="bgColor">Background:</label>
+    <input type="color" id="bgColor" />
+  </div>
+
+  <div class="option">
+    <label for="borderColor">Border Color:</label>
+    <input type="color" id="borderColor" />
+  </div>
+</div>
+
+<div class="option">
+  <div class="toggle-container">
+    <div id="customPopup">
+      <canvas width="150" height="100" id="customCanvas"></canvas>
+      <div class="table-container">
+        <table id="pointTable">
+          <thead>
+            <tr>
+              <th>X</th>
+              <th>Y</th>
+            </tr>
+          </thead>
+          <tbody id="shape_tbody">
+            <!-- Your rows go here -->
+            <tr class="selected">
+              <td contenteditable="true">50</td>
+              <td contenteditable="true">60</td>
+            </tr>
+            <tr>
+              <td contenteditable="true">60</td>
+              <td contenteditable="true">90</td>
+            </tr>
+            <tr>
+              <td contenteditable="true">80</td>
+              <td contenteditable="true">90</td>
+            </tr>
+            <tr>
+              <td contenteditable="true">90</td>
+              <td contenteditable="true">60</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div style="display: none" id="table_buttons">
+      <button id="add_button">Add Point</button>
+      <button id="delete_button">Delete Point</button>
+      <button onclick="centerpoints()" id="center_button">Center Points</button>
+    </div>
+    <img id="shapeImage" src="static/option_images/shape/circle.png" />
+    <div class="toggle">
+      <input type="radio" id="circle" name="shapeToggle" checked />
+      <label for="circle">Circle</label>
+
+      <input type="radio" id="star" name="shapeToggle" />
+      <label for="star">Star</label>
+
+      <input type="radio" id="heart" name="shapeToggle" />
+      <label for="heart">Heart</label>
+
+      <input type="radio" id="apple" name="shapeToggle" />
+      <label for="apple">Apple</label>
+
+      <input type="radio" id="triangle" name="shapeToggle" />
+      <label for="triangle">Triangle</label>
+
+      <input type="radio" id="diamond" name="shapeToggle" />
+      <label for="diamond">Diamond</label>
+
+      <input type="radio" id="hexagon" name="shapeToggle" />
+      <label for="hexagon">Hexagon</label>
+
+      <input type="radio" id="custom" name="shapeToggle" />
+      <label for="custom">Custom</label>
+    </div>
+  </div>
+  <div class="rotation-container">
+    <label id="angleLabel" for="rotationRange">Rotation: 0°</label>
+    <input
+      type="range"
+      id="rotationRange"
+      min="0"
+      max="360"
+      step="1"
+      value="0"
+    />
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/shapes.js') }}"></script>

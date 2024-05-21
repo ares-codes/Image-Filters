@@ -1,0 +1,63 @@
+<style>
+  .options-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 0;
+  }
+</style>
+
+<div class="color-options-container">
+  <div class="option">
+    <label for="bgColor">Background:</label>
+    <input type="color" id="bgColor" value="#ffffff" />
+  </div>
+
+  <div class="option">
+    <label for="lineColor">Line Color:</label>
+    <input type="color" id="lineColor" />
+  </div>
+</div>
+
+<div class="option">
+  <div class="toggle-container">
+    <img id="borderImage" src="static/option_images/string/circle.png" />
+    <div class="toggle">
+      <input type="radio" id="circleBorder" name="borderToggle" checked />
+      <label for="circleBorder">Circle</label>
+
+      <input type="radio" id="rectangleBorder" name="borderToggle" />
+      <label for="rectangleBorder">Rectangle</label>
+    </div>
+  </div>
+</div>
+
+<div class="color-options-container">
+  <div class="option">
+    <label for="nailCount" id="nailCountLabel">Nail Count:</label>
+    <input
+      type="number"
+      id="nailCount"
+      placeholder="Nail Count"
+      min="1"
+      value="200"
+      max="1000"
+      required
+    />
+  </div>
+
+  <div class="option">
+    <label for="lineCount" id="lineCountLabel">Line Count:</label>
+    <input
+      type="number"
+      id="lineCount"
+      placeholder="Line Count"
+      min="1"
+      value="1000"
+      max="10000"
+      required
+    />
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/string.js') }}"></script>

@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block extra %}
+<p style="text-align: center; font-size: 24px; margin: 2vh">
+  Embark on a creative journey in our filter playground! Upload your media,
+  experiment with diverse filters, and design your own unique visual experience.
+  Your artistic adventure starts here. Watch my video to learn more!
+</p>
+<div id="video-container">
+  <div class="video-wrapper">
+    <iframe
+      id="youtube-video-1"
+      src="https://www.youtube.com/embed/7rSFcmX_I2M"
+      frameborder="0"
+      allowfullscreen
+    ></iframe>
+  </div>
+</div>
+{% endblock %} {% block scripts %}
+<script>
+  document.getElementById("about-tab").classList.add("active");
+  document.getElementById("file-input").remove();
+  document.getElementById("new-media-button").remove();
+  document.getElementById("drop-container").remove();
+  document.getElementById("bottom").remove();
+</script>
+{% endblock %}

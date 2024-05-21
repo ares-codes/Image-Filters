@@ -1,0 +1,101 @@
+<style>
+  .toggle {
+    flex-wrap: wrap;
+  }
+
+  table th,
+  table td {
+    text-align: center;
+    overflow: auto;
+    width: 150px;
+  }
+
+  th {
+    background-color: #3498db;
+    color: white;
+  }
+
+  td {
+    background-color: #f2f2f2;
+  }
+</style>
+<div
+  style="
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly; /* Center the items horizontally */
+    align-items: center;
+    width: auto;
+    text-align: center; /* Center the items within each flex item */
+    gap: 10px;
+  "
+>
+  <div style="margin-bottom: 10px; margin-top: 10px">
+    <div class="title" style="text-align: center" id="colorCountTitleDith">
+      New Colors (2)
+    </div>
+    <div style="width: 50vw" class="color-picker" id="colorPickerWrapperDith">
+      <div class="button-row" id="final-row-dith">
+        <div class="button" id="addColorButtonDith">Add Color</div>
+        <div class="button" id="deleteColorButtonDith">Delete Color</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="matrices" style="margin-bottom: 10px">
+    <div class="toggle">
+      <input type="radio" id="Error" name="matrixToggle" checked />
+      <label for="Error">Error Matrix</label>
+
+      <input type="radio" id="Ordered" name="matrixToggle" />
+      <label for="Ordered">Ordered Matrix</label>
+    </div>
+    <div style="width: 50vw; margin: 0 auto" class="table-container">
+      <table id="ErrorTable">
+        <thead>
+          <tr>
+            <th id="EMatrix" class="title-cell" colspan="3">Error Matrix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td contenteditable="true">-</td>
+            <td contenteditable="true">*</td>
+            <td contenteditable="true">0.4375</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">0.1875</td>
+            <td contenteditable="true">0.3125</td>
+            <td contenteditable="true">0.0625</td>
+          </tr>
+        </tbody>
+      </table>
+      <table id="OrderedTable" style="display: none">
+        <thead>
+          <tr>
+            <th id="OMatrix" class="title-cell" colspan="2">Ordered Matrix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td contenteditable="true">0</td>
+            <td contenteditable="true">2</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">3</td>
+            <td contenteditable="true">1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="dither_table_buttons">
+      <button onclick="addRowDith()">Add Row</button>
+      <button onclick="addColDith()">Add Col</button>
+      <button onclick="deleteRowDith()">Delete Row</button>
+      <button onclick="deleteColDith()">Delete Col</button>
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/dither.js') }}"></script>

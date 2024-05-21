@@ -1,0 +1,63 @@
+<div id="mosaic_opts" style="margin: 0 auto">
+  <div
+    id="mosiac_block_opts"
+    style="display: none; text-align: center; margin-bottom: 10px"
+  >
+    <div style="position: relative; display: inline-block">
+      <div id="original_size_mosaic"></div>
+      <div
+        id="new_size_mosaic"
+        style="position: absolute; top: 0; left: 0; border: 2px solid #3498db"
+      ></div>
+    </div>
+    <div style="flex-direction: column">
+      <div class="slider-container">
+        <label id="tile_width" for="tileWidthRange">Tile Width: 1</label>
+        <input
+          style="width: 250px"
+          type="range"
+          id="tileWidthRange"
+          min="1"
+          max="100"
+          step="1"
+          value="1"
+        />
+      </div>
+
+      <div class="slider-container">
+        <label id="tile_height" for="tileHeightRange">Tile Height: 1</label>
+        <input
+          style="width: 250px"
+          type="range"
+          id="tileHeightRange"
+          min="1"
+          max="100"
+          step="1"
+          value="1"
+        />
+      </div>
+    </div>
+  </div>
+  <input
+    type="file"
+    id="file-input-mosaic"
+    accept="image/png, image/jpeg"
+    multiple
+  />
+  <!-- Container div for text, image, and buttons -->
+  <div id="image-stack-container">
+    <div id="new-media-text-mosaic"></div>
+    <div id="drop-container-mosaic">
+      <div id="drop-area-mosaic">
+        <p>Drag and drop mosaic image files here, or click to select files.</p>
+      </div>
+    </div>
+    <div id="image-stack" style="display: none">
+      <button onclick="showPrevImage()">Prev</button>
+      <button onclick="addImage()">Add</button>
+      <button onclick="deleteCurrentImage()">Delete</button>
+      <button onclick="showNextImage()">Next</button>
+    </div>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='js/mosaic.js') }}"></script>

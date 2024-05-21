@@ -1,0 +1,55 @@
+{% extends "base.html" %} {% block options %} {% include "misc_help.html" %} {%
+endblock %} {% block scripts %}
+<script>
+  document.getElementById("misc-tab").classList.add("active");
+  bottom.style.marginTop = "-15px";
+
+  // Get all radio buttons with the name "miscToggle"
+  const radioButtons = document.querySelectorAll('input[name="miscToggle"]');
+  let mergeToggle = document.getElementById("merge");
+  let mergeContainer = document.getElementById("drop-area-merge");
+
+  let drop = document.getElementById("drop-area");
+
+  // Add event listener to each radio button
+  radioButtons.forEach(function (radio) {
+    radio.addEventListener("change", function (event) {
+      // Check if the selected radio button is NOT "Merge"
+
+      // blank download if not on merge and not present
+      if (transforming) {
+        return;
+      }
+
+      if (
+        mergeToggle &&
+        !mergeToggle.checked &&
+        drop &&
+        !drop.classList.contains("media-present")
+      ) {
+        download_button.style.background = "";
+      }
+
+      if (
+        mergeToggle &&
+        mergeToggle.checked &&
+        (drop.classList.contains("media-present") ||
+          mergeContainer.classList.contains("media-present"))
+      ) {
+        download_button.style.background = "#43A6C6";
+      }
+
+      if (
+        mergeToggle &&
+        mergeToggle.checked &&
+        !mergeContainer.classList.contains("media-present")
+      ) {
+        transform_button.style.background = "";
+      } else if (drop && drop.classList.contains("media-present")) {
+        transform_button.style.background = "#43A6C6";
+      }
+    });
+  });
+</script>
+
+{% endblock %}

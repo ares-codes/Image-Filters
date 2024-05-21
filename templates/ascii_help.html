@@ -1,0 +1,65 @@
+<style>
+  .options-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 0;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+</style>
+
+<div class="option_ascii">
+  <label for="uniqueChars">Characters:</label>
+  <input
+    type="text"
+    id="uniqueChars"
+    placeholder="Type characters"
+    minlength="1"
+    maxlength="300"
+    required
+    value="(!@#$%^&*)"
+  />
+</div>
+
+<div class="option_ascii">
+  <label for="bgColor">Background:</label>
+  <input type="color" id="bgColor" value="#ffffff" />
+</div>
+
+<div class="option_ascii">
+  <label for="singleColor" id="singleColorLabel">Text Color:</label>
+  <div class="toggle_ascii">
+    <input type="radio" id="singleColor" name="colorToggle" checked />
+    <label for="singleColor">Single Color</label>
+    <input type="color" id="textColor" />
+
+    <input type="radio" id="multiColor" name="colorToggle" />
+    <label for="multiColor">Multicolor</label>
+  </div>
+</div>
+
+<div class="option_ascii">
+  <label for="customChars" id="customCharsLabel">Chars per Row:</label>
+  <input
+    type="number"
+    id="charsPerRowInput"
+    placeholder="Custom Chars"
+    min="1"
+    value="100"
+    max="1000"
+    required
+  />
+  <div class="toggle_ascii">
+    <input type="radio" id="customChars" name="charsToggle" checked />
+    <label for="customChars">Custom</label>
+
+    <input type="radio" id="recommendedChars" name="charsToggle" />
+    <label for="recommendedChars">Recommended</label>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/ascii.js') }}"></script>

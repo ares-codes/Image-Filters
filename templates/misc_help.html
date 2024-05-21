@@ -1,0 +1,470 @@
+<style>
+  img {
+    height: 50px;
+    width: auto; /* Maintain aspect ratio */
+  }
+
+  .toggle {
+    flex-wrap: wrap; /* Added this line to allow wrapping */
+  }
+
+  table th,
+  table td {
+    text-align: center;
+    overflow: auto;
+    width: 150px;
+  }
+
+  th {
+    background-color: #3498db;
+    color: white;
+  }
+
+  td {
+    background-color: #f2f2f2;
+  }
+</style>
+<div class="option">
+  <div class="toggle-container">
+    <div class="toggle">
+      <input type="radio" id="negate" name="miscToggle" checked />
+      <label for="negate">Invert</label>
+
+      <input type="radio" id="bright" name="miscToggle" />
+      <label for="bright">Bright</label>
+
+      <input type="radio" id="blur" name="miscToggle" />
+      <label for="blur">Blur</label>
+
+      <input type="radio" id="sharp" name="miscToggle" />
+      <label for="sharp">Sharp</label>
+
+      <input type="radio" id="fade" name="miscToggle" />
+      <label for="fade">Fade</label>
+
+      <input type="radio" id="contrast" name="miscToggle" />
+      <label for="contrast">Contrast</label>
+
+      <input type="radio" id="saturate" name="miscToggle" />
+      <label for="saturate">Saturate</label>
+
+      <input type="radio" id="solarize" name="miscToggle" />
+      <label for="solarize">Solarize</label>
+
+      <input type="radio" id="color" name="miscToggle" />
+      <label for="color">Colorize</label>
+
+      <input type="radio" id="scale" name="miscToggle" />
+      <label for="scale">Gradient</label>
+
+      <input type="radio" id="pixel" name="miscToggle" />
+      <label for="pixel">Pixelate</label>
+
+      <input type="radio" id="resize" name="miscToggle" />
+      <label for="resize">Resize</label>
+
+      <input type="radio" id="crop" name="miscToggle" />
+      <label for="crop">Crop</label>
+
+      <input type="radio" id="flip" name="miscToggle" />
+      <label for="flip">Flip</label>
+
+      <input type="radio" id="rotate" name="miscToggle" />
+      <label for="rotate">Rotate</label>
+
+      <input type="radio" id="kernel" name="miscToggle" />
+      <label for="kernel">Kernel</label>
+
+      <input type="radio" id="merge" name="miscToggle" />
+      <label for="merge">Merge</label>
+    </div>
+  </div>
+</div>
+
+<div id="negate_opt" style="margin: 0">
+  <img src="static/option_images/misc/negate1.png" />
+  <img id="arrow" src="static/option_images/misc/arrow.jpg" />
+  <img src="static/option_images/misc/negate2.png" />
+</div>
+
+<div id="bright_opt" style="margin: 0; display: none">
+  <div id="brightSquare"></div>
+  <label id="bright_scale" for="brightRange">Intensity: 0</label>
+  <input
+    type="range"
+    id="brightRange"
+    min="-100"
+    max="100"
+    step="1"
+    value="0"
+  />
+</div>
+
+<div id="blur_opt" style="margin: 0; display: none">
+  <div class="svg-container">
+    <svg height="0" width="0">
+      <defs>
+        <filter id="blurFilter">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0" />
+        </filter>
+      </defs>
+    </svg>
+  </div>
+  <div id="blurSquare"></div>
+  <label id="blur_scale" for="blurRange">Intensity: 0</label>
+  <input type="range" id="blurRange" min="0" max="10" step="1" value="0" />
+</div>
+
+<div id="sharp_opt" style="margin: 0; display: none">
+  <div class="svg-container">
+    <svg height="0" width="0">
+      <defs>
+        <filter id="blurFilter">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0" />
+        </filter>
+      </defs>
+    </svg>
+  </div>
+  <div id="sharpenSquare"></div>
+  <label id="sharpen_scale" for="sharpenRange">Intensity: 0</label>
+  <input type="range" id="sharpenRange" min="0" max="10" step="1" value="0" />
+</div>
+
+<div id="fade_opt" style="margin: 0; display: none">
+  <div id="fadeSquare"></div>
+  <label id="fade_scale" for="fadeRange">Intensity: 0</label>
+  <input type="range" id="fadeRange" min="0" max="255" step="1" value="0" />
+</div>
+
+<div id="contrast_opt" style="margin: 0; display: none">
+  <div id="contrastSquare"></div>
+  <label id="contrast_scale" for="contrastRange">Intensity: 0</label>
+  <input
+    type="range"
+    id="contrastRange"
+    min="-100"
+    max="100"
+    step="1"
+    value="0"
+  />
+</div>
+
+<div id="sat_opt" style="margin: 0; display: none">
+  <div id="saturationSquare"></div>
+  <label id="saturation_scale" for="saturationRange">Intensity: 0</label>
+  <input
+    type="range"
+    id="saturationRange"
+    min="-100"
+    max="100"
+    step="1"
+    value="0"
+  />
+</div>
+
+<div id="sol_opt" style="margin: 0; display: none; text-align: center">
+  <canvas id="solarizeCanvas"></canvas>
+  <div>
+    <label id="solarize_scale" for="solarizeRange">Threshold: 0</label>
+    <input
+      type="range"
+      id="solarizeRange"
+      min="0"
+      max="255"
+      step="1"
+      value="0"
+    />
+  </div>
+</div>
+
+<div id="color_opt" style="margin: 0; display: none; text-align: center">
+  <div class="option">
+    <canvas id="colorCanvas"></canvas>
+
+    <label for="color_color">Color:</label>
+    <input type="color" id="color_color" value="#ffffff" />
+
+    <label id="color_scale" for="colorRange">Intensity: 0</label>
+    <input
+      type="range"
+      id="colorRange"
+      min="-100"
+      max="100"
+      step="1"
+      value="0"
+    />
+  </div>
+</div>
+
+<div id="scale_opt" style="margin: 0; display: none; text-align: center">
+  <div class="option">
+    <canvas id="gradientCanvas"></canvas>
+
+    <label for="lowColor">Low:</label>
+    <input type="color" id="lowColor" />
+
+    <label for="highColor">High:</label>
+    <input type="color" id="highColor" value="#ffffff" />
+  </div>
+</div>
+
+<div id="pixel_opt" style="margin: 0; display: none">
+  <div id="pixel_no_media">[Upload Media to Reveal Options]</div>
+  <div id="pixel_all_opts" style="display: none; text-align: center">
+    <div style="position: relative; display: inline-block; margin-bottom: 5px">
+      <div id="original_size2"></div>
+      <div
+        id="new_size2"
+        style="position: absolute; top: 0; left: 0; border: 2px solid #3498db"
+      ></div>
+    </div>
+    <div style="margin: 0 auto; flex-direction: column">
+      <label id="pixel_block" for="blockRange">Block Size: 1</label>
+      <input
+        style="width: 250px"
+        type="range"
+        id="blockRange"
+        min="1"
+        max="100"
+        step="1"
+        value="1"
+      />
+    </div>
+  </div>
+</div>
+
+<div id="resize_opt" style="margin: 0; display: none">
+  <div id="resize_no_media">[Upload Media to Reveal Options]</div>
+  <div id="resize_all_opts" style="display: none">
+    <div style="margin: 0 auto; margin-bottom: 5px">
+      <div id="original_size"></div>
+      <img
+        id="arrow"
+        src="static/option_images/misc/arrow.jpg"
+        style="
+          width: 50px;
+          margin-left: 3px;
+          margin-right: 2px;
+          margin-bottom: -15px;
+        "
+      />
+      <div id="new_size"></div>
+    </div>
+    <div style="margin: 0 auto; flex-direction: column">
+      <div class="slider-container">
+        <label id="resize_width" for="widthRange">Width: 0</label>
+        <input
+          style="width: 250px"
+          type="range"
+          id="widthRange"
+          min="-100"
+          max="100"
+          step="1"
+          value="0"
+        />
+      </div>
+
+      <div class="slider-container">
+        <label id="resize_height" for="heightRange">Height: 0</label>
+        <input
+          style="width: 250px"
+          type="range"
+          id="heightRange"
+          min="-100"
+          max="100"
+          step="1"
+          value="0"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="crop_opt" style="margin: 0; display: none">
+  <div id="crop_no_media">[Upload Media to Reveal Options]</div>
+  <div id="crop_all_opts" style="display: none">
+    <div
+      style="
+        margin: 0 auto;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div
+        style="position: relative; display: inline-block; margin-bottom: 5px"
+      >
+        <div id="original_size3"></div>
+        <div
+          id="new_size3"
+          style="position: absolute; top: 0; left: 0; border: 2px solid #3498db"
+        ></div>
+      </div>
+    </div>
+
+    <div
+      style="
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      "
+    >
+      <div class="slider-container">
+        <label id="top_x" for="topXRange">X Pos: 0</label>
+        <input
+          style="width: 250px"
+          type="range"
+          id="topXRange"
+          min="0"
+          max="100"
+          step="1"
+          value="0"
+        />
+      </div>
+
+      <div class="slider-container">
+        <label id="top_y" for="topYRange">Y Pos: 0</label>
+        <input
+          style="width: 250px"
+          type="range"
+          id="topYRange"
+          min="0"
+          max="100"
+          step="1"
+          value="0"
+        />
+      </div>
+
+      <div class="slider-container">
+        <label id="crop_width" for="cropWidthRange">Width:</label>
+        <input
+          style="width: 250px"
+          type="range"
+          id="cropWidthRange"
+          min="1"
+          max="100"
+          step="1"
+          value="1"
+        />
+      </div>
+
+      <div class="slider-container">
+        <label id="crop_height" for="cropHeightRange">Height:</label>
+        <input
+          style="width: 250px"
+          type="range"
+          id="cropHeightRange"
+          min="1"
+          max="100"
+          step="1"
+          value="1"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  id="flip_opt"
+  style="margin: 0 auto; display: none; flex-direction: column"
+>
+  <!-- Set a container for the image and div -->
+  <div style="text-align: center; margin-bottom: 10px">
+    <!-- Initially hidden image -->
+    <img
+      id="flip_img"
+      src="static/option_images/misc/horizontal.png"
+      style="
+        margin: 0 auto;
+        height: 120px;
+        margin-top: -10px;
+        margin-bottom: -20px;
+      "
+    />
+
+    <!-- Initially hidden div -->
+    <div id="flip_div" style="display: none; margin: 0 auto">
+      <!-- Content of flip_div goes here -->
+    </div>
+  </div>
+
+  <div class="toggle-container">
+    <div class="toggle">
+      <input type="radio" id="horizontal" name="flipToggle" checked />
+      <label for="horizontal">Horizontally</label>
+
+      <input type="radio" id="vertical" name="flipToggle" />
+      <label for="vertical">Vertically</label>
+    </div>
+  </div>
+</div>
+
+<div
+  id="rotate_opt"
+  style="margin: 0; display: none; flex-direction: column; align-items: center"
+>
+  <div
+    id="rotate_img"
+    style="
+      height: 75px;
+      width: 75px;
+      border: 1px solid #000;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    "
+  ></div>
+
+  <div>
+    <label id="rotate_scale" for="rotateRange">Rotation: 0°</label>
+    <input type="range" id="rotateRange" min="0" max="360" step="1" value="0" />
+  </div>
+</div>
+
+<div id="kernel_opt" style="margin: 0; display: none">
+  <div id="matrices">
+    <div style="width: 50vw; margin: 0 auto" class="table-container">
+      <table id="kernelTable">
+        <thead>
+          <tr>
+            <th id="kernel_title" class="title-cell" colspan="2">
+              Kernel Matrix
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td contenteditable="true">0.5</td>
+            <td contenteditable="true">0.5</td>
+          </tr>
+          <tr>
+            <td contenteditable="true">0.5</td>
+            <td contenteditable="true">0.5</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="misc_table_buttons">
+      <button onclick="addRow()">Add Row</button>
+      <button onclick="addCol()">Add Col</button>
+      <button onclick="deleteRow()">Delete Row</button>
+      <button onclick="deleteCol()">Delete Col</button>
+    </div>
+  </div>
+</div>
+
+<div id="merge_opt" style="margin: 0; display: none">
+  <input type="file" id="file-input-merge" accept="image/png, image/jpeg" />
+  <div id="new-media-button-merge" style="padding-bottom: 10px">
+    <p>Click to upload new media</p>
+  </div>
+  <div id="drop-container-merge">
+    <div id="drop-area-merge">
+      <p>Drag and drop merge image file here, or click to select file.</p>
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/misc.js') }}"></script>

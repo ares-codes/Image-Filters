@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Filters</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css" />
+    <!-- Include Socket.IO library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.min.js"></script>
+  </head>
+  <body>
+    <!-- Title Bar -->
+    <div id="title-bar">
+      <h2>Image Filters</h2>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav>
+      <ul>
+        <li>
+          <div id="about-tab" class="tab-row">
+            <a class="left-button" href="/custom">&lt;</a>
+            <a href="/" class="nav-link">About</a>
+            <!-- Left and right buttons -->
+            <a class="right-button" href="/ascii">&gt;</a>
+          </div>
+        </li>
+
+        <li>
+          <div id="ascii-tab" class="tab-row">
+            <a class="left-button" href="/">&lt;</a>
+            <a href="/ascii" class="nav-link" id="ascii_a_element">Ascii</a>
+            <!-- Left and right buttons -->
+            <a class="right-button" href="/quant">&gt;</a>
+          </div>
+        </li>
+
+        <li>
+          <div id="quant-tab" class="tab-row">
+            <a class="left-button" href="/ascii">&lt;</a>
+            <a href="/quant" class="nav-link">Quantize</a>
+            <!-- Left and right buttons -->
+            <a class="right-button" href="/dither">&gt;</a>
+          </div>
+        </li>
+
+        <li>
+          <div id="dither-tab" class="tab-row">
+            <a class="left-button" href="/quant">&lt;</a>
+            <a href="/dither" class="nav-link">Dither</a>
+            <!-- Left and right buttons -->
+            <a class="right-button" href="/mosaic">&gt;</a>
+          </div>
+        </li>
+
+        <li>
+          <div id="mosaic-tab" class="tab-row">
+            <a class="left-button" href="/dither">&lt;</a>
+            <a href="/mosaic" class="nav-link">Mosaic</a>
+            <!-- Left and right buttons -->
+            <a class="right-button" href="/trace">&gt;</a>
+          </div>
+        </li>
+
+        <li>
+          <div id="trace-tab" class="tab-row">
+            <a class="left-button" href="/mosaic">&lt;</a>
+            <a href="/trace" class="nav-link">Trace</a>
+            <!-- Left and right buttons -->
+            <a class="right-button" href="/string">&gt;</a>
+          </div>
+        </li>
+
+        <li>
+          <div id="string-tab" class="tab-row">
+            <a class="left-button" href="/trace">&lt;</a>
+            <a href="/string" class="nav-link">String</a>
+            <!-- Left and right buttons -->
+            <a class="right-button" href="/shapes">&gt;</a>
+          </div>
+        </li>
+
+        <li>
+          <div id="shapes-tab" class="tab-row">
+            <a class="left-button" href="/string">&lt;</a>
+            <a href="/shapes" class="nav-link">Shapes</a>
+            <!-- Left and right buttons -->
+            <a class="right-button" href="/misc">&gt;</a>
+          </div>
+        </li>
+
+        <li>
+          <div id="misc-tab" class="tab-row">
+            <a class="left-button" href="/shapes">&lt;</a>
+            <a href="/misc" class="nav-link">Miscellaneous</a>
+            <!-- Left and right buttons -->
+            <a class="right-button" href="/style">&gt;</a>
+          </div>
+        </li>
+
+        <li>
+          <div id="style-tab" class="tab-row">
+            <a class="left-button" href="/misc">&lt;</a>
+            <a href="/style" class="nav-link">Style Transfer</a>
+            <!-- Left and right buttons -->
+            <a class="right-button" href="/custom">&gt;</a>
+          </div>
+        </li>
+
+        <li>
+          <div id="custom-tab" class="tab-row">
+            <a class="left-button" href="/style">&lt;</a>
+            <a href="/custom" class="nav-link">Custom</a>
+            <!-- Left and right buttons -->
+            <a class="right-button" href="/">&gt;</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <input type="file" id="file-input" accept="image/png,image/jpeg, video/*" />
+    <!-- Button to Upload New Media -->
+    <div id="new-media-button">
+      <p>Click to upload new media</p>
+    </div>
+    <div id="drop-container">
+      <div id="drop-area">
+        <p>Drag and drop media files here, or click to select files.</p>
+      </div>
+    </div>
+
+    <script src="static/js/helpers.js"></script>
+    <div class="options-container" style="padding-top: 8px">
+      {% block options %}{% endblock %}
+    </div>
+    <div id="bottom" style="text-align: center; position: relative">
+      <p id="progress-text" style="position: relative; opacity: 0">
+        [Upload Media]
+      </p>
+      <div
+        id="download-transform"
+        style="display: flex; align-items: center; justify-content: center"
+      >
+        <button id="download-button" onclick="download('progress-text')">
+          Download
+        </button>
+        <button
+          id="transform-button"
+          onclick="toggleVisibility('progress-text')"
+        >
+          Transform
+        </button>
+
+        <button
+          style="display: none; background-color: lightgreen"
+          id="add-filter-button"
+        >
+          Add Filter
+        </button>
+        <button
+          style="display: none; background-color: lightcoral"
+          id="back-filter-button"
+        >
+          Back to Table
+        </button>
+        <div id="bar-overlay"></div>
+      </div>
+    </div>
+    {% block extra %}{% endblock %}
+
+    <script src="{{ url_for('static', filename='js/setup.js') }}"></script>
+    {% block scripts %} {% endblock %}
+  </body>
+</html>

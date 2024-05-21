@@ -1,0 +1,124 @@
+{% extends "base.html" %} {% block options %}
+<style>
+  .toggle {
+    flex-wrap: wrap;
+  }
+
+  .toggle input {
+    margin-right: 5px; /* Adjust the margin as needed */
+  }
+</style>
+
+<div style="margin: 0 auto">
+  <div class="title" style="text-align: center" id="filterCountTitle">
+    Filters (3)
+  </div>
+
+  <div style="margin: 0 auto; width: 50vw" id="customFilterWrapper">
+    <div class="button-row" id="custom-final-row">
+      <div class="button" onclick="showFilters()" id="addFilterButton">
+        Add Filter
+      </div>
+      <div
+        style="background-color: #dc3545"
+        class="button"
+        onclick="deleteFilter()"
+        id="deleteFilterButton"
+      >
+        Delete Filter
+      </div>
+    </div>
+  </div>
+
+  <div id="filter_toggle" style="display: none" class="option">
+    <div class="toggle-container">
+      <div class="toggle">
+        <input type="radio" id="custom_ascii" name="customToggle" checked />
+        <label for="custom_ascii">Ascii</label>
+
+        <input type="radio" id="custom_quant" name="customToggle" />
+        <label for="custom_quant">Quantize</label>
+
+        <input type="radio" id="custom_dither" name="customToggle" />
+        <label for="custom_dither">Dither</label>
+
+        <input type="radio" id="custom_mosaic" name="customToggle" />
+        <label for="custom_mosaic">Mosaic</label>
+
+        <input type="radio" id="custom_trace" name="customToggle" />
+        <label for="custom_trace">Trace</label>
+
+        <input type="radio" id="custom_string" name="customToggle" />
+        <label for="custom_string">String</label>
+
+        <input type="radio" id="custom_shapes" name="customToggle" />
+        <label for="custom_shapes">Shapes</label>
+
+        <input type="radio" id="custom_misc" name="customToggle" />
+        <label for="custom_misc">Miscellaneous</label>
+
+        <input type="radio" id="custom_style" name="customToggle" />
+        <label for="custom_style">Style Transfer</label>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="options-container"
+    style="display: none; margin-top: -3%; margin-bottom: -3%"
+    id="current_custom_opts"
+  >
+    <div
+      style="display: flex; flex-wrap: wrap; justify-content: center"
+      id="custom_ascii_opts"
+    >
+      {% include "ascii_help.html" %}
+    </div>
+    <div id="custom_quant_opts">{% include "quant_help.html" %}</div>
+    <div
+      style="display: flex; flex-wrap: wrap; justify-content: center"
+      id="custom_dither_opts"
+    >
+      {% include "dither_help.html" %}
+    </div>
+    <div
+      style="display: flex; flex-wrap: wrap; justify-content: center"
+      id="custom_mosaic_opts"
+    >
+      {% include "mosaic_help.html" %}
+    </div>
+    <div
+      style="display: flex; flex-wrap: wrap; justify-content: center"
+      id="custom_trace_opts"
+    >
+      {% include "trace_help.html" %}
+    </div>
+    <div
+      style="display: flex; flex-wrap: wrap; justify-content: center"
+      id="custom_string_opts"
+    >
+      {% include "string_help.html" %}
+    </div>
+    <div
+      style="display: flex; flex-wrap: wrap; justify-content: center"
+      id="custom_shapes_opts"
+    >
+      {% include "shapes_help.html" %}
+    </div>
+    <div
+      style="display: inline-flex; flex-direction: column; align-items: center"
+      id="custom_misc_opts"
+    >
+      {% include "misc_help.html" %}
+    </div>
+    <div id="custom_style_opts">{% include "style_help.html" %}</div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+
+{% endblock %} {% block scripts %}
+<script>
+  document.getElementById("custom-tab").classList.add("active");
+</script>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "base.html" %} {% block options %} {% include "dither_help.html" %}
+{% endblock %} {% block scripts %}
+<script>
+  document.getElementById("dither-tab").classList.add("active");
+  document.getElementById("bottom").style.marginTop = "-20px";
+</script>
+{% endblock %}
