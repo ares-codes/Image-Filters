@@ -1,0 +1,874 @@
+/* Reset some default styles */
+body,
+p {
+  margin: 0;
+  padding: 0;
+  background-color: white; /* Set the background color of the HTML page to white */
+  color: black; /* Set text color to black */
+}
+
+.completed {
+  border: 1px solid lightgreen;
+}
+
+.current-filter {
+  border: 1px solid lightcoral;
+}
+
+/* Style the title bar */
+#title-bar {
+  background-color: #333; /* Dark gray color */
+  text-align: center;
+  padding: 5px 0; /* Adjust height as needed */
+  color: white; /* Set text color to white */
+}
+
+/* Reset some default styles for the list and anchor elements */
+ul,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+#drop-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  overflow: hidden;
+}
+
+/* Style for the container of color pickers */
+#colorPickers {
+  display: flex;
+  flex-wrap: wrap; /* Allow color pickers to wrap to the next line */
+  justify-content: flex-start;
+  align-items: center; /* Vertically align color pickers and labels */
+  margin-top: 10px; /* Add some top margin */
+}
+
+/* Style for individual color pickers and labels */
+label {
+  margin-bottom: 5px; /* Add spacing between labels and color pickers */
+  font-weight: bold;
+  font-size: 14px;
+  color: #333; /* Text color */
+}
+
+label,
+input {
+  text-align: center;
+}
+
+input[type="color"] {
+  width: 200px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
+  margin-right: 10px; /* Add spacing between color pickers */
+  margin-bottom: 5px; /* Add spacing between color pickers and labels */
+  border: 1px solid #ccc; /* Add a border for color pickers */
+  border-radius: 5px; /* Add rounded corners */
+  outline: none; /* Remove the default focus border */
+  cursor: pointer; /* Change cursor on hover */
+}
+
+input[type="number"] {
+  width: 150px;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+/* Style for the Randomize button */
+#randomizeColors {
+  background-color: #007bff; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none; /* Remove button border */
+  border-radius: 5px; /* Add rounded corners */
+  padding: 5px 10px; /* Add padding to the button */
+  font-size: 12px; /* Button text size */
+  cursor: pointer; /* Change cursor on hover */
+  margin-top: 10px; /* Add top margin for spacing */
+}
+
+#shapeOptionsContainer {
+  display: none;
+}
+
+/* Style for the Randomize button on hover */
+#randomizeColors:hover {
+  background-color: #0056b3; /* Change background color on hover */
+}
+
+/* Style for the Apply button */
+#applyOptions {
+  margin-top: 15px; /* Add top margin to separate options and button */
+  background-color: #007bff; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none; /* Remove button border */
+  border-radius: 5px; /* Add rounded corners */
+  padding: 10px 20px; /* Add padding to the button */
+  font-size: 16px; /* Button text size */
+  cursor: pointer; /* Change cursor on hover */
+}
+
+/* Style for the Apply button on hover */
+#applyOptions:hover {
+  background-color: #0056b3; /* Change background color on hover */
+}
+
+#file-input {
+  display: none;
+}
+
+#new-media-button {
+  display: none;
+  margin-top: 1vh;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  text-align: center;
+}
+
+#drop-area {
+  border: 2px solid black;
+  width: 70vw;
+  height: 47vh;
+  margin-top: 2vh;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden; /* Ensure no overflow */
+}
+
+/* Center the media element horizontally and touch the top */
+#drop-area.media-present img,
+#drop-area.media-present video {
+  max-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  object-fit: contain;
+  transform: translateX(-50%);
+  width: auto;
+  height: auto;
+}
+
+/* Modal styles */
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#options {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 70%;
+  max-width: 400px;
+  border-radius: 5px;
+  margin: 20px auto;
+}
+
+.option {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 15px;
+  margin-bottom: 20px;
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 5px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#drop-area.media-present {
+  border: none;
+}
+
+/* Style for the navigation bar */
+nav {
+  background-color: #0074d9; /* Blue color for the navbar */
+  overflow: hidden; /* Hide overflowing tabs */
+}
+
+ul {
+  display: flex;
+  justify-content: space-between; /* Distribute tabs evenly */
+  padding: 0;
+}
+
+li {
+  position: relative; /* Create a stacking context for the lines */
+  text-align: center; /* Center-align the tab text */
+  flex-grow: 1; /* Allow tabs to grow equally to fill the available space */
+}
+
+a {
+  color: #fff; /* White text color */
+  padding: 10px 0; /* Add padding to create clickable area */
+  position: relative;
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+  display: block; /* Make the entire tab clickable */
+}
+
+/* Add black vertical lines between tabs */
+li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  background-color: #000; /* Black separator line */
+  right: 0;
+  top: 0;
+}
+
+/* Change color slightly on hover */
+a:hover {
+  color: #c0e1ff; /* Slightly lighter blue on hover */
+}
+
+/* Add styles for left and right buttons */
+.tab-row {
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+}
+
+.left-button,
+.right-button {
+  display: none; /* Initially hide the buttons */
+}
+
+/* Add this CSS rule for the active class to have a yellow background */
+.active {
+  background-color: rgb(255, 149, 0); /* Yellow background for the active tab */
+}
+
+/* Media query for responsive design */
+@media (max-width: 768px) {
+  ul {
+    flex-direction: column; /* Stack tabs vertically */
+  }
+
+  .nav-link {
+    display: none; /* Hide all tab links by default */
+  }
+
+  /* Display .nav-link elements within the .active tab-row */
+  .active .nav-link {
+    display: inline-block; /* or any other appropriate display value */
+  }
+
+  .active {
+    background-color: #0074d9;
+    display: block; /* Display the active tab link */
+  }
+
+  .active .left-button,
+  .active .right-button {
+    display: inline-block; /* Make the buttons visible */
+    visibility: visible;
+    cursor: pointer; /* Add pointer cursor to indicate interactivity */
+    width: 30px; /* Set the width of the buttons */
+    height: 30px; /* Set the height of the buttons */
+
+    color: white; /* Set text color to white */
+    text-align: center; /* Center-align text within the button */
+    line-height: 30px; /* Center vertically */
+    font-size: 20px; /* Set the font size */
+    border: black; /* Remove border */
+    cursor: pointer; /* Add pointer cursor to indicate interactivity */
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px; /* Add rounded corners */
+  }
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+.title {
+  font-size: 24px;
+}
+
+.color-picker,
+#customFilterWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 130px;
+  overflow-y: auto;
+  border: 1px solid #000;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 350px; /* Set a fixed width for the color picker */
+  box-sizing: content-box;
+}
+
+.color {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  border: 1px solid black; /* Add a black border */
+  flex-shrink: 0; /* Prevent colors from shrinking */
+}
+
+.button-row {
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.button {
+  flex: 1;
+  padding: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+#addColorButton,
+#addColorButtonDith,
+#addFilterButton {
+  background-color: #28a745;
+  color: white;
+}
+
+#deleteColorButton,
+#deleteColorButtonDith,
+#deleteFilterButton {
+  background-color: grey;
+  color: white;
+}
+
+#imageContainer {
+  width: 300px;
+  height: 170px;
+
+  overflow: hidden;
+  position: relative;
+}
+
+#imageContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.toggle {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.toggle label {
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: grey;
+  color: white;
+  border-radius: 5px;
+  user-select: none;
+}
+
+.toggle input {
+  display: none;
+}
+
+#multiLines:checked + label,
+#oneLine:checked + label,
+#circle:checked + label {
+  background-color: #3498db;
+}
+
+.hidden {
+  display: none;
+}
+
+#download-button,
+#transform-button,
+#add-filter-button,
+#back-filter-button {
+  width: 35%;
+  padding: 10px;
+}
+
+#bar-overlay {
+  position: absolute;
+  left: 15%;
+  height: 70%;
+  background-color: #43a5c6; /* Initial color */
+  z-index: 1; /* Place it above buttons */
+}
+
+#video-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px; /* Add margin for better spacing */
+}
+.video-wrapper {
+  flex: 1;
+  position: relative;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none; /* Remove iframe border */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+#drop-area-mosaic.media-present {
+  border: none;
+}
+
+#drop-container-mosaic {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  overflow: hidden;
+}
+
+#drop-area-mosaic {
+  border: 2px solid black;
+  width: 40vw;
+  height: 26vh;
+  margin-top: 10px;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden; /* Ensure no overflow */
+}
+
+/* Center the media element horizontally and touch the top */
+#drop-area-mosaic.media-present img {
+  max-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  object-fit: contain;
+  transform: translateX(-50%);
+  width: auto;
+  height: auto;
+}
+
+#file-input-mosaic {
+  display: none;
+}
+
+#original_size_mosaic,
+#new_size_mosaic {
+  height: 150px;
+  width: 150px;
+  border: 1px solid #000;
+}
+
+/* Added container style */
+#image-stack-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+}
+
+.toggle_ascii {
+  display: flex;
+  flex-direction: column; /* Set the direction to column */
+}
+
+.toggle_ascii label {
+  cursor: pointer;
+  padding: 8px 16px;
+  background-color: grey;
+  color: white;
+  border-radius: 5px;
+  user-select: none;
+  margin-bottom: 5px; /* Increase the margin between toggles */
+}
+
+.toggle_ascii input {
+  display: none;
+}
+
+.toggle_ascii input:checked + label {
+  background-color: #3498db;
+}
+
+#textColor {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+}
+
+#charsPerRowInput {
+  display: inline-block; /* Initially show the input for custom chars per row */
+}
+
+/* Adjusted margin for the "Text Color" label */
+#singleColorLabel,
+#customCharsLabel {
+  margin-bottom: 5px;
+}
+
+.option_ascii {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 15px;
+  margin-bottom: 20px;
+}
+
+.filter-select {
+  background-color: lightblue;
+}
+
+#dither_table_buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#dither_table_buttons button {
+  width: 12.5vw;
+}
+
+#drop-area-merge.media-present {
+  border: none;
+}
+
+#drop-container-merge {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  overflow: hidden;
+}
+
+#drop-area-merge {
+  border: 2px solid black;
+  width: 40vw;
+  height: 26vh;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden; /* Ensure no overflow */
+}
+
+/* Center the media element horizontally and touch the top */
+#drop-area-merge.media-present img {
+  max-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  object-fit: contain;
+  transform: translateX(-50%);
+  width: auto;
+  height: auto;
+}
+
+#new-media-button-merge {
+  display: none;
+  text-align: center;
+}
+
+#new-media-button-merge p {
+  display: inline-block; /* Make the paragraph inline-block */
+  border-top: 2px solid black; /* Adjust the border width and color as needed */
+  border-bottom: 2px solid black;
+}
+
+#file-input-merge {
+  display: none;
+}
+
+#resize_all_opts {
+  display: flex;
+  flex-direction: column; /* Set to column to stack the rows vertically */
+}
+
+#resize_all_opts > div {
+  display: flex;
+  flex-direction: row; /* Set to row to place the items horizontally */
+  align-items: center; /* Align items vertically in the center */
+}
+
+#original_size,
+#new_size,
+#original_size2,
+#new_size2,
+#new_size3,
+#original_size3 {
+  height: 150px;
+  width: 150px;
+  border: 1px solid #000;
+}
+
+.svg-container {
+  width: 0;
+  height: 0;
+}
+
+#brightSquare {
+  width: 200px;
+  height: 50px;
+  background-color: white;
+  margin: 0 auto; /* Center the black square */
+  border: 1px solid #000;
+}
+
+#fadeSquare {
+  width: 200px;
+  height: 50px;
+  background-color: black;
+  margin: 0 auto; /* Center the black square */
+}
+
+#blurSquare,
+#sharpenSquare {
+  width: 200px;
+  height: 50px;
+  background-color: black;
+  margin: 0 auto; /* Center the black square */
+  filter: url(#blurFilter); /* Apply the SVG filter */
+}
+
+#contrastSquare,
+#saturationSquare,
+#solarizeCanvas,
+#gradientCanvas,
+#colorCanvas {
+  width: 200px;
+  height: 50px;
+  background: linear-gradient(
+    to right,
+    violet,
+    indigo,
+    blue,
+    green,
+    yellow,
+    orange,
+    red
+  );
+  margin: 0 auto; /* Center the black square */
+}
+
+#misc_table_buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#misc_table_buttons button {
+  width: 12.5vw;
+}
+
+#customPopup {
+  align-items: center;
+  display: none;
+  flex-direction: row;
+  padding-bottom: 5px;
+}
+#customCanvas {
+  border: 1px solid #000;
+}
+
+#shapeImage {
+  height: 100px;
+  width: auto; /* Maintain aspect ratio */
+}
+
+#angleLabel {
+  text-align: center;
+}
+
+#add_button {
+  background-color: lightgreen;
+}
+
+#delete_button {
+  background-color: lightcoral;
+}
+
+#center_button {
+  background-color: lightblue;
+}
+
+#borderImage {
+  height: 100px;
+  width: auto; /* Maintain aspect ratio */
+}
+
+#drop-area-style.media-present {
+  border: none;
+}
+
+#drop-container-style {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  overflow: hidden;
+}
+
+#drop-area-style {
+  border: 2px solid black;
+  width: 40vw;
+  height: 26vh;
+  margin-top: 10px;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden; /* Ensure no overflow */
+}
+
+/* Center the media element horizontally and touch the top */
+#drop-area-style.media-present img {
+  max-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  object-fit: contain;
+  transform: translateX(-50%);
+  width: auto;
+  height: auto;
+}
+
+#new-media-button-style {
+  display: none;
+  margin-top: 1vh;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  text-align: center;
+}
+
+#file-input-style {
+  display: none;
+}
+
+#lineImage {
+  height: 100px;
+  width: auto; /* Maintain aspect ratio */
+}
+
+input[type="text"] {
+  width: 150px;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.toggle input:checked + label {
+  background-color: #3498db;
+}
+
+#filter_toggle {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.toggle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px; /* Set your desired max-width */
+  margin: auto; /* Center the container */
+}
+
+.table-container {
+  width: 400px; /* Set your desired width for the table container */
+  height: 120px; /* Set your desired height for the table container */
+  overflow: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent line breaks within the table */
+  text-align: center; /* Center the table within the container */
+}
+
+table {
+  margin: 0 auto; /* Center the table itself */
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+/* Enable horizontal scrolling for cells */
+td[contenteditable="true"] {
+  white-space: nowrap;
+  overflow-x: auto;
+  max-width: 150px; /* Adjust max-width as needed */
+}
+
+#arrow {
+  width: 80px;
+  height: auto;
+  position: relative;
+  top: -10px;
+}
+
+tr.selected {
+  background-color: lightblue; /* Set background color for selected row */
+}
+
+input[type="range"] {
+  width: 200px;
+}
+
+.color-options-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
